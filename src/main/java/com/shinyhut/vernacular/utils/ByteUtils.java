@@ -5,6 +5,14 @@ public class ByteUtils {
     private ByteUtils() {
     }
 
+    public static byte[] reverseBytes(byte[] bytes) {
+        byte[] reversed = new byte[bytes.length];
+        for (int i = 0; i < bytes.length; i++) {
+            reversed[i] = bytes[bytes.length - 1 - i];
+        }
+        return reversed;
+    }
+
     public static byte[] reverseBits(byte[] b) {
         byte[] result = new byte[b.length];
         for (int i = 0; i < b.length; i++) {

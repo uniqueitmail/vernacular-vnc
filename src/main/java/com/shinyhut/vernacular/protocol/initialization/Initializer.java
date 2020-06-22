@@ -24,9 +24,10 @@ public class Initializer {
         session.setFramebufferHeight(serverInit.getFramebufferHeight());
 
         VernacularConfig config = session.getConfig();
-        ColorDepth colorDepth = config.getColorDepth();
+        //ColorDepth colorDepth = config.getColorDepth();
 
-        PixelFormat pixelFormat = new PixelFormat(
+        // TODO - For now, always accept the server's native pixel format
+/*        PixelFormat pixelFormat = new PixelFormat(
                 colorDepth.getBitsPerPixel(),
                 colorDepth.getDepth(),
                 true,
@@ -36,15 +37,15 @@ public class Initializer {
                 colorDepth.getBlueMax(),
                 colorDepth.getRedShift(),
                 colorDepth.getGreenShift(),
-                colorDepth.getBlueShift());
+                colorDepth.getBlueShift());*/
 
-        SetPixelFormat setPixelFormat = new SetPixelFormat(pixelFormat);
+        //SetPixelFormat setPixelFormat = new SetPixelFormat(pixelFormat);
         SetEncodings setEncodings = new SetEncodings(HEXTILE, RRE, COPYRECT, RAW, DESKTOP_SIZE);
 
-        setPixelFormat.encode(out);
+        //setPixelFormat.encode(out);
         setEncodings.encode(out);
 
-        session.setPixelFormat(pixelFormat);
+        session.setPixelFormat(serverInit.getPixelFormat());
     }
 
 }

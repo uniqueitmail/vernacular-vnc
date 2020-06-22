@@ -11,6 +11,8 @@ import java.math.BigInteger;
 import java.util.Map;
 import java.util.Optional;
 
+import static com.shinyhut.vernacular.utils.ByteUtils.reverseBytes;
+
 public class PixelDecoder {
 
     private static final ColorMapEntry BLACK = new ColorMapEntry(0, 0, 0);
@@ -25,6 +27,9 @@ public class PixelDecoder {
         DataInput dataInput = new DataInputStream(in);
         byte[] bytes = new byte[pixelFormat.getBytesPerPixel()];
         dataInput.readFully(bytes);
+        if (!pixelFormat.isBigEndian()) {
+            bytes = reverseBytes(bytes);
+        }
         BigInteger value = new BigInteger(1, bytes);
 
         int red;
